@@ -1,0 +1,11 @@
+.sidebar { 
+    padding-top: 3%; 
+}
+
+.nav-item{
+    list-style-type: none;
+  }
+
+.nav-link{
+    text-decoration:none
+}
