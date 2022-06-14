@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2022 at 06:34 AM
+-- Generation Time: Jun 14, 2022 at 02:21 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -35,6 +35,13 @@ CREATE TABLE `academic_list` (
   `status` int(1) NOT NULL DEFAULT 0 COMMENT '0=Pending,1=Start,2=Closed'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `academic_list`
+--
+
+INSERT INTO `academic_list` (`id`, `year`, `semester`, `is_default`, `status`) VALUES
+(6, '2023-2025', 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +55,13 @@ CREATE TABLE `class_list` (
   `section` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `class_list`
+--
+
+INSERT INTO `class_list` (`id`, `curriculum`, `level`, `section`) VALUES
+(4, 'Omnis vel ut nisi in', '1979', 'Fuga Illo perspicia');
+
 -- --------------------------------------------------------
 
 --
@@ -59,6 +73,13 @@ CREATE TABLE `criteria_list` (
   `criteria` text NOT NULL,
   `order_by` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `criteria_list`
+--
+
+INSERT INTO `criteria_list` (`id`, `criteria`, `order_by`) VALUES
+(33, 'Criteria Sample', 0);
 
 -- --------------------------------------------------------
 
@@ -137,7 +158,9 @@ INSERT INTO `evaluation_answers` (`evaluation_id`, `question_id`, `rate`) VALUES
 (16, 1, 5),
 (16, 6, 5),
 (16, 8, 5),
-(16, 3, 5);
+(16, 3, 5),
+(17, 22, 1),
+(18, 22, 2);
 
 -- --------------------------------------------------------
 
@@ -176,7 +199,9 @@ INSERT INTO `evaluation_list` (`evaluation_id`, `academic_id`, `class_id`, `stud
 (13, 3, 2, 16, 2, 1, 13, '2022-05-30 21:21:59'),
 (14, 3, 2, 35, 2, 1, 9, '2022-05-31 11:56:28'),
 (15, 3, 2, 35, 2, 1, 13, '2022-05-31 11:57:05'),
-(16, 3, 2, 35, 2, 1, 13, '2022-05-31 11:57:13');
+(16, 3, 2, 35, 2, 1, 13, '2022-05-31 11:57:13'),
+(17, 6, 4, 36, 4, 3, 15, '2022-06-03 13:06:22'),
+(18, 6, 4, 37, 4, 3, 15, '2022-06-03 13:32:29');
 
 -- --------------------------------------------------------
 
@@ -200,7 +225,9 @@ CREATE TABLE `faculty_list` (
 --
 
 INSERT INTO `faculty_list` (`id`, `school_id`, `firstname`, `lastname`, `email`, `password`, `avatar`, `date_created`) VALUES
-(1, '20140623', 'George', 'Wilson', 'gwilson@sample.com', 'd40242fb23c45206fadee4e2418f274f', '1608011100_avatar.jpg', '2020-12-15 13:45:18');
+(1, '20140623', 'George', 'Wilson', 'gwilson@sample.com', 'd40242fb23c45206fadee4e2418f274f', '1608011100_avatar.jpg', '2020-12-15 13:45:18'),
+(2, 'Nissim', 'Howard', 'Rhoda', 'naxyqalacu@mailinator.com', 'd8578edf8458ce06fbc5bb76a58c5ca4', 'no-image-available.png', '2022-06-03 13:01:25'),
+(3, 'Claudia', 'Maile', 'Molly', 'xunasyvysa@mailinator.com', '', 'no-image-available.png', '2022-06-03 13:02:40');
 
 -- --------------------------------------------------------
 
@@ -221,21 +248,8 @@ CREATE TABLE `question_list` (
 --
 
 INSERT INTO `question_list` (`id`, `academic_id`, `question`, `order_by`, `criteria_id`) VALUES
-(1, 3, 'Sample Question', 0, 1),
-(3, 3, 'Test', 2, 2),
-(5, 0, 'Question 101', 0, 1),
-(6, 3, 'Sample 101', 4, 1),
-(8, 3, 'Eum mollit aut porroEum mollit aut porroEum mollit aut porroEum mollit aut porroEum mollit aut porroEum mollit aut porroEum mollit aut porroEum mollit aut porroEum mollit aut porro', 6, 1),
-(9, 4, 'asdasdas', 0, 2),
-(10, 4, 'asdasdasd', 1, 0),
-(11, 4, 'asdasdasd', 2, 2),
-(12, 1, 'asdasdasdasdas', 0, 1),
-(13, 1, 'asdasdasdasd', 1, 1),
-(14, 4, 'fdgdfgdf', 3, 1),
-(15, 4, 'dfgdfgdfgdf', 4, 1),
-(16, 4, 'fgdfgdfgdfgdfgdgdfgsdf', 5, 2),
-(17, 5, 'asdasdasd', 0, 1),
-(18, 5, 'asdasdasdas', 1, 1);
+(21, 6, 'asdasd', 0, 32),
+(22, 6, 'Ducimus nisi verita', 1, 33);
 
 -- --------------------------------------------------------
 
@@ -261,7 +275,8 @@ INSERT INTO `restriction_list` (`id`, `academic_id`, `faculty_id`, `class_id`, `
 (11, 4, 1, 2, 2),
 (12, 1, 1, 1, 1),
 (13, 3, 1, 2, 2),
-(14, 5, 1, 2, 3);
+(14, 5, 1, 2, 3),
+(15, 6, 3, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -283,6 +298,14 @@ CREATE TABLE `student_list` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `student_list`
+--
+
+INSERT INTO `student_list` (`id`, `school_id`, `firstname`, `lastname`, `email`, `password`, `clear_password`, `class_id`, `avatar`, `user`, `date_created`) VALUES
+(36, 'Gray', 'Sophia', 'Henry', 'gysob@mailinator.com', 'cfd9150a6e0ecfc3d2bd0acdabecee13', 'NzzW6k9b', 4, 'no-image-available.png', 'student', '2022-06-03 13:03:12'),
+(37, 'Alice', 'Dakota', 'Dora', 'hidup@mailinator.com', 'edcef38df2989286400bf7f0704f7f5e', 'YUII1qMT', 4, 'no-image-available.png', 'student', '2022-06-03 13:31:51');
+
 -- --------------------------------------------------------
 
 --
@@ -295,6 +318,13 @@ CREATE TABLE `subject_list` (
   `subject` text NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `subject_list`
+--
+
+INSERT INTO `subject_list` (`id`, `code`, `subject`, `description`) VALUES
+(4, 'Harum ut ut ea qui e', 'Tempora assumenda cu', 'Et veniam adipisici');
 
 -- --------------------------------------------------------
 
@@ -331,6 +361,7 @@ CREATE TABLE `users` (
   `email` varchar(200) NOT NULL,
   `password` text NOT NULL,
   `avatar` text NOT NULL DEFAULT 'no-image-available.png',
+  `role` text NOT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -338,8 +369,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `avatar`, `date_created`) VALUES
-(1, 'Administrator', '', 'admin@admin.com', '0192023a7bbd73250516f069df18b500', '1607135820_avatar.jpg', '2020-11-26 10:57:04');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `avatar`, `role`, `date_created`) VALUES
+(135, 'Armando', 'Brendan', 'Jbareta2@gmail.com', '24353dae12b326fcd794b8665db04e20', 'no-image-available.png', '', '2022-06-03 12:05:11'),
+(141, 'Superadmin', ' ', 'superadmin@admin.com', 'fdce6031b2f6f1655ed80945bceb02b8', '1654230300_images (1).png', 'superadmin', '2022-06-03 12:25:03');
 
 --
 -- Indexes for dumped tables
@@ -419,55 +451,55 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `academic_list`
 --
 ALTER TABLE `academic_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `class_list`
 --
 ALTER TABLE `class_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `criteria_list`
 --
 ALTER TABLE `criteria_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `evaluation_list`
 --
 ALTER TABLE `evaluation_list`
-  MODIFY `evaluation_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `evaluation_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `faculty_list`
 --
 ALTER TABLE `faculty_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `question_list`
 --
 ALTER TABLE `question_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `restriction_list`
 --
 ALTER TABLE `restriction_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `student_list`
 --
 ALTER TABLE `student_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `subject_list`
 --
 ALTER TABLE `subject_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `system_settings`
@@ -479,7 +511,7 @@ ALTER TABLE `system_settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
